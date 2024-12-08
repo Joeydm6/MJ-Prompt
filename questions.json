@@ -1,0 +1,299 @@
+{
+  "print": [
+    {
+      "question": "Type of room",
+      "type": "radio",
+      "name": "typeOfRoom",
+      "options": [
+        { "label": "Living room", "value": "Living room", "weight": 10 },
+        { "label": "Bedroom", "value": "Bedroom", "weight": 7.5 },
+        { "label": "Hallway", "value": "Hallway", "weight": 5 },
+        { "label": "Kitchen", "value": "Kitchen", "weight": 5 },
+        { "label": "Office space", "value": "Office space", "weight": 7 },
+        { "label": "Dining room", "value": "Dining room", "weight": 6 }
+      ]
+    },
+    {
+      "question": "Room style",
+      "type": "radio",
+      "name": "roomStyle",
+      "options": [
+        { "label": "Modern", "value": "Modern", "weight": 9 },
+        { "label": "Minimalistic", "value": "Minimalistic", "weight": 7 },
+        { "label": "Industrial", "value": "Industrial", "weight": 6 },
+        { "label": "Scandinavian", "value": "Scandinavian", "weight": 7.5 },
+        { "label": "Classic", "value": "Classic", "weight": 5 },
+        { "label": "Japandi", "value": "Japandi", "weight": 7.5 },
+        { "label": "Luxury", "value": "Luxury", "weight": 5 }
+      ]
+    },
+    {
+      "question": "Time of day",
+      "type": "radio",
+      "name": "timeOfDay",
+      "options": [
+        { "label": "Daytime", "value": "Daytime", "weight": 10 },
+        { "label": "Evening", "value": "Evening", "weight": 5 }
+      ]
+    },
+    {
+      "question": "Color palette",
+      "type": "radio",
+      "name": "colorPalette",
+      "options": [
+        { "label": "Neutral shades", "value": "Neutral shades", "weight": 10 },
+        { "label": "Earthy tones", "value": "Earthy tones", "weight": 10 },
+        { "label": "Bright & vibrant", "value": "Bright & vibrant", "weight": 7.5 },
+        { "label": "Monochrome", "value": "Monochrome", "weight": 5 },
+        { "label": "Pastels", "value": "Pastels", "weight": 10 }
+      ]
+    },
+    {
+      "question": "Room elements",
+      "type": "checkbox",
+      "name": "roomElements",
+      "options": [
+        { "label": "Couch", "value": "Couch", "weight": 10 },
+        { "label": "Armchair", "value": "Armchair", "weight": 7 },
+        { "label": "Coffee table", "value": "Coffee table", "weight": 9 },
+        { "label": "Indoor plants", "value": "Indoor plants", "weight": 9 },
+        { "label": "Bookshelves", "value": "Bookshelves", "weight": 4 },
+        { "label": "Rug", "value": "Rug", "weight": 7 },
+        { "label": "Fireplace", "value": "Fireplace", "weight": 4 },
+        { "label": "Floor lamp", "value": "Floor lamp", "weight": 5 },
+        { "label": "Side table", "value": "Side table", "weight": 5 },
+        { "label": "Pillows", "value": "Decorative pillows", "weight": 6 },
+        { "label": "TV", "value": "TV", "weight": 7 },
+        { "label": "Dining table", "value": "Dining table", "weight": 5 },
+        { "label": "Storage cabinet", "value": "Storage cabinet", "weight": 3 },
+        { "label": "Mirror", "value": "Mirror", "weight": 4 }
+      ]
+    },
+    {
+      "question": "Type of painting",
+      "type": "radio",
+      "name": "typeOfPainting",
+      "options": [
+        { "label": "Landscape", "value": "Landscape", "weight": null },
+        { "label": "Minimalist", "value": "Minimalist", "weight": null },
+        { "label": "Wildlife", "value": "Wildlife", "weight": null },
+        { "label": "Modern urban", "value": "Modern urban", "weight": null },
+        { "label": "Still life", "value": "Still life", "weight": null },
+        { "label": "Geo patterns", "value": "Geo patterns", "weight": null },
+        { "label": "Abstract shapes", "value": "Abstract shapes", "weight": null },
+        { "label": "Cityscapes", "value": "Cityscapes", "weight": null },
+        { "label": "Animals", "value": "Animals", "weight": null },
+        { "label": "Futuristic", "value": "Futuristic", "weight": null },
+        { "label": "Renaissance", "value": "Renaissance", "weight": null },
+        { "label": "Floral", "value": "Floral", "weight": null },
+        { "label": "Cosmic galaxy", "value": "Cosmic galaxy", "weight": null },
+        { "label": "Countryside", "value": "Countryside", "weight": null }
+      ]
+    }
+  ],
+    "gyms": [
+      {
+        "question": "Type of gym",
+        "type": "radio",
+        "name": "typeOfGym",
+        "options": [
+          { "label": "Small gym", "value": "Small gym", "weight": 10 },
+          { "label": "Medium gym", "value": "Medium gym", "weight": 7 },
+          { "label": "Large gym", "value": "Large gym", "weight": 4 }
+        ]
+      },
+      {
+        "question": "Training focus",
+        "type": "radio",
+        "name": "trainingFocus",
+        "options": [
+          { "label": "Strength training", "value": "Strength training", "weight": 8 },
+          { "label": "Cardio workouts", "value": "Cardio workouts", "weight": 9 },
+          { "label": "HIIT", "value": "HIIT", "weight": 7 },
+          { "label": "Yoga", "value": "Yoga", "weight": 6 },
+          { "label": "Group fitness", "value": "Group fitness", "weight": 10 }
+        ]
+      },
+      {
+        "question": "People exercising",
+        "type": "radio",
+        "name": "peopleExercising",
+        "options": [
+          { "label": "Solo workouts", "value": "Solo workouts", "weight": 10 },
+          { "label": "Small group", "value": "Small group", "weight": 10 },
+          { "label": "Large group", "value": "Large group", "weight": 6 },
+          { "label": "Mixed group", "value": "Mixed age and gender group", "weight": 6 }
+        ]
+      },
+      {
+        "question": "Gym style",
+        "type": "radio",
+        "name": "gymStyle",
+        "options": [
+          { "label": "Modern", "value": "Modern", "weight": 10 },
+          { "label": "Industrial", "value": "Industrial", "weight": 5 },
+          { "label": "Minimalist", "value": "Minimalist", "weight": 8 },
+          { "label": "High-end gym", "value": "High-end gym", "weight": 7 }
+        ]
+      },
+      {
+        "question": "Equipment focus",
+        "type": "checkbox",
+        "name": "equipmentFocus",
+        "options": [
+          { "label": "Dumbbells", "value": "Dumbbells", "weight": 9 },
+          { "label": "Cardio machine", "value": "Cardio machine", "weight": 7 },
+          { "label": "Strength machine", "value": "Strength machine", "weight": 7 },
+          { "label": "Kettlebells", "value": "Kettlebells", "weight": 9 },
+          { "label": "Treadmill", "value": "Treadmill", "weight": 8 },
+          { "label": "Boxing bag", "value": "Boxing bag", "weight": 6 }
+        ]
+      }
+    ],
+    "taxis": [
+      {
+        "question": "Type of taxi vehicle",
+        "type": "radio",
+        "name": "taxiType",
+        "options": [
+          { "label": "Luxury sedan", "value": "Luxury sedan", "weight": 10 },
+          { "label": "Compact car", "value": "Compact car", "weight": 8 },
+          { "label": "Electric vehicle", "value": "Electric vehicle", "weight": 9 },
+          { "label": "SUV", "value": "SUV", "weight": 7 },
+          { "label": "Minivan", "value": "Minivan", "weight": 8 }
+        ]
+      },
+      {
+        "question": "Passengers",
+        "type": "radio",
+        "name": "passengers",
+        "options": [
+          { "label": "Solo passenger", "value": "Solo passenger", "weight": 10 },
+          { "label": "Business", "value": "Business professional", "weight": 6 },
+          { "label": "Family with kids", "value": "Family with kids", "weight": 7 },
+          { "label": "Tourists", "value": "Tourists with luggage", "weight": 9 },
+          { "label": "Group", "value": "Friends or groups", "weight": 5 }
+        ]
+      },
+      {
+        "question": "Operating environment",
+        "type": "radio",
+        "name": "operatingEnvironment",
+        "options": [
+          { "label": "City streets", "value": "City streets", "weight": 10 },
+          { "label": "Suburban", "value": "Suburban neighborhoods", "weight": 8 },
+          { "label": "Mountain", "value": "Mountainous roads", "weight": 6 },
+          { "label": "Coastal areas", "value": "Coastal or beach areas", "weight": 2 },
+          { "label": "Nighttime", "value": "Nighttime", "weight": 7 }
+        ]
+      }
+    ],
+      "business": [
+        {
+          "question": "Type of work",
+          "type": "radio",
+          "name": "typeOfWork",
+          "options": [
+            { "label": "Office work", "value": "Office work", "weight": 10 },
+            { "label": "Creative", "value": "Creative work", "weight": 8 },
+            { "label": "Training", "value": "Teaching or training", "weight": 7 },
+            { "label": "Tech", "value": "Tech", "weight": 9 }
+          ]
+        },
+        {
+          "question": "Work setting",
+          "type": "radio",
+          "name": "workSetting",
+          "options": [
+            { "label": "Solo work", "value": "Solo work", "weight": 10 },
+            { "label": "Small team", "value": "Small team collaboration", "weight": 9 },
+            { "label": "Large meeting", "value": "Large meeting", "weight": 8 }
+          ]
+        },
+        {
+          "question": "Activity focus",
+          "type": "radio",
+          "name": "activityFocus",
+          "options": [
+            { "label": "Typing", "value": "Typing", "weight": 10 },
+            { "label": "Presenting", "value": "Presenting", "weight": 9 },
+            { "label": "Collaborating", "value": "Collaborating", "weight": 8 },
+            { "label": "Teaching", "value": "Teaching", "weight": 6 }
+          ]
+        }
+      ],
+      "people": [
+        {
+          "question": "Age Group",
+          "type": "radio",
+          "name": "ageGroup",
+          "options": [
+            { "label": "Young Adult", "value": "Young Adult", "weight": 10 },
+            { "label": "Middle-Aged", "value": "Middle-Aged", "weight": 8 },
+            { "label": "Older person", "value": "Older person", "weight": 4 }
+          ]
+        },
+        {
+          "question": "Activity or Setting",
+          "type": "radio",
+          "name": "activityOrSetting",
+          "options": [
+            { "label": "Reading a book", "value": "Reading a book", "weight": 9 },
+            { "label": "Exercising", "value": "Exercising", "weight": 5 },
+            { "label": "On a computer", "value": "Working on a computer", "weight": 9 },
+            { "label": "Teaching", "value": "Teaching or presenting", "weight": 7 },
+            { "label": "Walking outdoors", "value": "Walking outdoors", "weight": 7 },
+            { "label": "Socializing", "value": "Socializing", "weight": 8 }
+          ]
+        },
+        {
+          "question": "Emotion or Expression",
+          "type": "radio",
+          "name": "emotionOrExpression",
+          "options": [
+            { "label": "Happy", "value": "Happy", "weight": 10 },
+            { "label": "Serious", "value": "Serious", "weight": 8 },
+            { "label": "Angry", "value": "Angry", "weight": 2 },
+            { "label": "Calm", "value": "Calm", "weight": 9 },
+            { "label": "Excited", "value": "Excited", "weight": 8 }
+          ]
+        }
+      ],
+      "realEstate": [
+        {
+          "question": "Property type",
+          "type": "radio",
+          "name": "propertyType",
+          "options": [
+            { "label": "Apartment", "value": "Apartment", "weight": 10 },
+            { "label": "Terraced house", "value": "Terraced house", "weight": 10 },
+            { "label": "Villa", "value": "Villa", "weight": 5 },
+            { "label": "Penthouse", "value": "Penthouse", "weight": 6 },
+            { "label": "Cottage", "value": "Cottage", "weight": 6 },
+            { "label": "Loft", "value": "Loft", "weight": 8 },
+            { "label": "Townhouse", "value": "Townhouse", "weight": 7 }
+          ]
+        },
+        {
+          "question": "Architectural Style",
+          "type": "radio",
+          "name": "architecturalStyle",
+          "options": [
+            { "label": "Modern", "value": "Modern", "weight": 10 },
+            { "label": "Minimalist", "value": "Minimalist", "weight": 8 },
+            { "label": "Luxury", "value": "Luxury", "weight": 5 }
+          ]
+        },
+        {
+          "question": "Environment",
+          "type": "radio",
+          "name": "environment",
+          "options": [
+            { "label": "Cityscape", "value": "Cityscape", "weight": 10 },
+            { "label": "Countryside", "value": "Countryside", "weight": 3 },
+            { "label": "Suburban", "value": "Suburban", "weight": 6 }
+          ]
+        }
+      ]
+    }
+            
