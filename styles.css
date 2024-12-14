@@ -3,7 +3,7 @@
     --background-color: #ffffff;
     --text-color: #333;
     --button-text-color: #ffffff;
-    --selected-bg: #78B5AA; /* Aangepaste kleur voor geselecteerde antwoorden */
+    --selected-bg: #78B5AA;
     --selected-text: #fff;
 
     /* Specifieke kleuren voor knoppen in Light Mode */
@@ -32,7 +32,7 @@
 
     --button-hover-bg: #e0e0e0;
     --button-hover-bg-dark: #3700B3;
-    --selected-bg-dark: #78B5AA; /* Aangepaste kleur voor geselecteerde antwoorden in Night Mode */
+    --selected-bg-dark: #78B5AA;
     --selected-text-dark: #fff;
 }
 
@@ -104,7 +104,34 @@ body {
     justify-content: center;
     gap: 10px;
     z-index: 1000;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionele schaduw */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .sticky-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--background-color);
+        padding: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 5px;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .sticky-buttons button {
+        flex: 1;
+        max-width: 120px;
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* Hover-effecten voor knoppen */
+.custom-btn:hover {
+    opacity: 0.9;
 }
 
 .answers {
@@ -235,27 +262,4 @@ input:disabled + label {
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     color: #721c24;
-}
-
-/* Mobiele apparaten */
-@media (max-width: 768px) {
-    .sticky-buttons {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: var(--background-color);
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        z-index: 1000;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionele schaduw */
-    }
-
-    .sticky-buttons button {
-        width: 100%; /* Knoppen vullen de breedte van het scherm */
-        max-width: 300px; /* Optioneel: Beperk de maximale breedte */
-        font-size: 14px; /* Zorg voor leesbaarheid op kleine schermen */
-    }
 }
