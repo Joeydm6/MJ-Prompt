@@ -1,170 +1,140 @@
 const exclusionRules = {
-     // Rooms
     "Hallway": ["Couch", "Armchair", "Coffee table", "Rug", "Fireplace", "Floor lamp", "Side table", "Decorative pillows", "TV", "Dining table"],
     "Fireplace": ["Hallway"],
     "Dining room": ["Couch"],
     "Kitchen": ["TV"],
-
-    // Gyms
     "Yoga": ["Large group"],
     "Boxing bag": ["Group fitness"],
     "High-end gym": ["Industrial"],
-
-    // Taxis
     "Luxury sedan": ["Family with kids"],
     "Compact car": ["Tourists"],
     "Coastal areas": ["Electric vehicle"],
-
-    // Business
     "Large meeting": ["Focused"],
     "Typing": ["Energetic"],
     "Creative": ["Serious"],
-
-    // People
     "Reading a book": ["Angry"],
     "Socializing": ["Calm"],
     "Sporty": ["Teaching"],
-
-    // Real estate
     "Cityscape": ["Cottage"],
     "Luxury": ["Suburban"],
     "Loft": ["Countryside"]
 };
-document.addEventListener("DOMContentLoaded", () => {
-    const examplePromptDiv = document.getElementById("example-prompt");
-    const promptText = document.getElementById("prompt-text");
-    const confirmationMessage = document.getElementById("confirmation-message");
-    const toggleNightModeButton = document.getElementById("toggle-night-mode");
 
-    const loadQuestions = async () => {
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = {
+        examplePromptDiv: document.getElementById("example-prompt"),
+        promptText: document.getElementById("prompt-text"),
+        confirmationMessage: document.getElementById("confirmation-message"),
+        toggleNightModeButton: document.getElementById("toggle-night-mode"),
+        resetFormButton: document.getElementById("reset-form"),
+        generatePromptButton: document.getElementById("generate-prompt"),
+        randomChoicesButton: document.getElementById("random-choices"),
+        generateMultipleButton: document.getElementById("generate-multiple")
+    };
+
+    const fetchQuestions = async (path) => {
         try {
-            const response = await fetch("questions.json");
-            const questions = await response.json();
-            generateQuestionsWithWeights("room-form", questions.print);
-            generateQuestionsWithWeights("gym-form", questions.gyms);
-            generateQuestionsWithWeights("taxi-form", questions.taxis);
-            generateQuestionsWithWeights("business-form", questions.business);
-            generateQuestionsWithWeights("people-form", questions.people);
-            generateQuestionsWithWeights("real-estate-form", questions.realEstate);
+            const response = await fetch(path);
+            return response.json();
         } catch (error) {
             console.error("Error loading questions:", error);
+            return null;
         }
-    };    
+    };
 
-    const generateQuestionsWithWeights = (formId, questions) => {
+    const generateQuestions = (formId, questions) => {
         const form = document.getElementById(formId);
-        form.innerHTML = ""; // Maak het formulier leeg
-    
+        if (!form) return;
+
+        form.innerHTML = ""; // Clear existing content
+
         questions.forEach(({ question, type, name, options }) => {
             const container = document.createElement("div");
             container.classList.add("mb-3");
-    
+
             const questionText = document.createElement("p");
             questionText.textContent = question;
-    
+
             const answersDiv = document.createElement("div");
             answersDiv.classList.add("answers");
-    
+
             options.forEach(({ label, value, weight }) => {
                 const labelElement = document.createElement("label");
                 const input = document.createElement("input");
                 input.type = type;
                 input.name = name;
                 input.value = value;
-                input.dataset.weight = weight || 0; // Voeg gewicht toe, standaard 0
-    
+                input.dataset.weight = weight || 0;
+
                 labelElement.appendChild(input);
                 labelElement.append(label);
                 answersDiv.appendChild(labelElement);
-    
-                // **Hier voeg je de change-eventlistener toe**
+
                 input.addEventListener("change", () => {
-                    updateVisualSelection(answersDiv); // Werk visuele selectie bij
-                    applyExclusionRules(formId); // Pas uitsluitingen toe
-                });                               
+                    updateVisualSelection(answersDiv);
+                    applyExclusionRules(formId);
+                });
             });
-    
+
             container.appendChild(questionText);
             container.appendChild(answersDiv);
             form.appendChild(container);
         });
     };
 
-    function updateVisualSelection(answersDiv) {
-        const labels = answersDiv.querySelectorAll("label");
-        labels.forEach(label => label.classList.remove("selected"));
-        const checkedInputs = answersDiv.querySelectorAll("input:checked");
-        checkedInputs.forEach(input => {
-            const associatedLabel = input.closest("label");
-            if (associatedLabel) associatedLabel.classList.add("selected");
+    const updateVisualSelection = (answersDiv) => {
+        answersDiv.querySelectorAll("label").forEach(label => label.classList.remove("selected"));
+        answersDiv.querySelectorAll("input:checked").forEach(input => {
+            input.closest("label").classList.add("selected");
         });
-    }
+    };
 
     const applyExclusionRules = (formId) => {
         const form = document.getElementById(formId);
         const inputs = form.querySelectorAll("input");
-    
-        // Reset alle inputs naar standaardstatus
+
         inputs.forEach(input => {
-            input.disabled = false; // Zorg ervoor dat alles standaard inschakelbaar is
-            const label = input.closest("label");
-            if (label) {
-                label.classList.remove("disabled"); // Verwijder 'disabled' styling
-            }
+            input.disabled = false;
+            input.closest("label").classList.remove("disabled");
         });
-    
-        // Loop door geselecteerde inputs en pas uitsluitingen toe
+
         inputs.forEach(input => {
             if (input.checked) {
-                const exclusions = exclusionRules[input.value] || [];
-                exclusions.forEach(excludedValue => {
+                (exclusionRules[input.value] || []).forEach(excludedValue => {
                     const excludedInput = form.querySelector(`input[value="${excludedValue}"]`);
                     if (excludedInput) {
-                        excludedInput.disabled = true; // Schakel uitgesloten opties uit
-                        const label = excludedInput.closest("label");
-                        if (label) {
-                            label.classList.add("disabled"); // Voeg visuele styling toe
-                        }
+                        excludedInput.disabled = true;
+                        excludedInput.closest("label").classList.add("disabled");
                     }
                 });
             }
         });
-    };    
-
-    const weightedRandomChoice = (options) => {
-        const cumulativeWeights = [];
-        let sum = 0;
-
-        options.forEach(option => {
-            sum += option.weight || 0; // Voeg het gewicht toe
-            cumulativeWeights.push(sum); // Voeg cumulatieve som toe
-        });
-
-        const random = Math.random() * sum;
-
-        for (let i = 0; i < cumulativeWeights.length; i++) {
-            if (random < cumulativeWeights[i]) {
-                return options[i];
-            }
-        }
-        return options[options.length - 1]; // Fallback
     };
 
-    const selectRandomChoicesWithWeights = (formId) => {
-        const form = document.getElementById(formId);
-        const questions = form.querySelectorAll(".answers");
+    const weightedRandomChoice = (options) => {
+        const totalWeight = options.reduce((sum, { weight }) => sum + (weight || 0), 0);
+        const random = Math.random() * totalWeight;
+        let cumulativeWeight = 0;
 
-        questions.forEach(question => {
-            const inputs = question.querySelectorAll("input");
-            const options = Array.from(inputs).map(input => ({
-                input: input,
+        for (const option of options) {
+            cumulativeWeight += option.weight || 0;
+            if (random < cumulativeWeight) return option;
+        }
+
+        return options[options.length - 1];
+    };
+
+    const selectRandomChoices = (formId) => {
+        const form = document.getElementById(formId);
+        form.querySelectorAll(".answers").forEach(question => {
+            const options = Array.from(question.querySelectorAll("input")).map(input => ({
+                input,
                 weight: parseFloat(input.dataset.weight) || 0
             }));
-
             const selectedOption = weightedRandomChoice(options);
 
-            inputs.forEach(input => {
-                input.checked = (input === selectedOption.input);
+            question.querySelectorAll("input").forEach(input => {
+                input.checked = input === selectedOption.input;
                 input.dispatchEvent(new Event("change"));
             });
         });
@@ -172,94 +142,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const generatePrompt = (formId) => {
         const form = document.getElementById(formId);
-        const sections = form.querySelectorAll(".mb-3");
-        const promptParts = [];
-        sections.forEach(section => {
-            const questionText = section.querySelector("p").textContent.trim();
-            const selectedOptions = [...section.querySelectorAll("input:checked")].map(input => input.value);
-            if (selectedOptions.length > 0) {
-                promptParts.push(`${questionText}: ${selectedOptions.join(", ")}`);
-            }
-        });
-        return promptParts.join("\n");
-    };
-
-    const updatePromptInUI = (prompt) => {
-        promptText.textContent = prompt || "Your prompt will appear here after you make a selection.";
-        examplePromptDiv.classList.remove("d-none");
-        examplePromptDiv.style.display = "block";
+        return Array.from(form.querySelectorAll(".mb-3"))
+            .map(section => {
+                const question = section.querySelector("p").textContent.trim();
+                const selectedOptions = Array.from(section.querySelectorAll("input:checked")).map(input => input.value);
+                return selectedOptions.length ? `${question}: ${selectedOptions.join(", ")}` : null;
+            })
+            .filter(Boolean)
+            .join("\n");
     };
 
     const resetForm = () => {
-        const activeTab = document.querySelector(".tab-pane.active");
-        const form = activeTab.querySelector("form");
-        const inputs = form.querySelectorAll("input");
-    
-        inputs.forEach(input => {
-            input.checked = false; // Deselecteer alle opties
-            input.disabled = false; // Schakel alle opties weer in
-            const label = input.closest("label");
-            if (label) {
-                label.classList.remove("disabled"); // Verwijder 'disabled' stijl
-            }
-        });
-    
-        applyExclusionRules(form.id); // Pas uitsluitingen opnieuw toe
-    
-        // Verberg voorbeeld prompt
-        const examplePromptDiv = document.getElementById("example-prompt");
-        if (examplePromptDiv) {
-            examplePromptDiv.classList.add("d-none");
-            examplePromptDiv.style.display = "none";
-        }
-    };    
+        const activeTab = document.querySelector(".tab-pane.active form");
+        if (!activeTab) return;
 
-    const generateMultiplePromptsWithWeights = (formId, count = 10) => {
-        const prompts = [];
-        for (let i = 0; i < count; i++) {
-            selectRandomChoicesWithWeights(formId);
-            prompts.push(generatePrompt(formId));
-        }
-        return prompts.join("\n\n");
+        activeTab.querySelectorAll("input").forEach(input => {
+            input.checked = false;
+            input.disabled = false;
+            input.closest("label").classList.remove("disabled");
+        });
+
+        applyExclusionRules(activeTab.id);
+        elements.examplePromptDiv.classList.add("d-none");
+        elements.examplePromptDiv.style.display = "none";
+    };
+
+    const generateMultiplePrompts = (formId, count = 10) => {
+        return Array.from({ length: count })
+            .map(() => {
+                selectRandomChoices(formId);
+                return generatePrompt(formId);
+            })
+            .join("\n\n");
     };
 
     const copyToClipboard = (text, message) => {
         navigator.clipboard.writeText(text).then(() => {
-            confirmationMessage.textContent = message;
-            confirmationMessage.classList.remove("d-none");
-            setTimeout(() => confirmationMessage.classList.add("d-none"), 3000);
+            elements.confirmationMessage.textContent = message;
+            elements.confirmationMessage.classList.remove("d-none");
+            setTimeout(() => elements.confirmationMessage.classList.add("d-none"), 3000);
         });
     };
 
-    document.getElementById("reset-form").addEventListener("click", resetForm);
+    const initializeEventListeners = () => {
+        elements.resetFormButton.addEventListener("click", resetForm);
 
-    document.getElementById("generate-prompt").addEventListener("click", () => {
-        const activeTab = document.querySelector(".tab-pane.active");
-        const formId = activeTab.querySelector("form").id;
-        const prompt = generatePrompt(formId);
-        updatePromptInUI(prompt);
-        copyToClipboard(prompt, "Prompt generated and copied!");
-    });
+        elements.generatePromptButton.addEventListener("click", () => {
+            const activeForm = document.querySelector(".tab-pane.active form");
+            const prompt = generatePrompt(activeForm.id);
+            elements.promptText.textContent = prompt || "Your prompt will appear here after you make a selection.";
+            elements.examplePromptDiv.classList.remove("d-none");
+            copyToClipboard(prompt, "Prompt generated and copied!");
+        });
 
-    document.getElementById("random-choices").addEventListener("click", () => {
-        const activeTab = document.querySelector(".tab-pane.active");
-        const formId = activeTab.querySelector("form").id;
-        selectRandomChoicesWithWeights(formId);
-        const prompt = generatePrompt(formId);
-        updatePromptInUI(prompt);
-        copyToClipboard(prompt, "Random choices selected and copied!");
-    });
+        elements.randomChoicesButton.addEventListener("click", () => {
+            const activeForm = document.querySelector(".tab-pane.active form");
+            selectRandomChoices(activeForm.id);
+            const prompt = generatePrompt(activeForm.id);
+            elements.promptText.textContent = prompt || "Your prompt will appear here after you make a selection.";
+            elements.examplePromptDiv.classList.remove("d-none");
+            copyToClipboard(prompt, "Random choices selected and copied!");
+        });
 
-    document.getElementById("generate-multiple").addEventListener("click", () => {
-        const activeTab = document.querySelector(".tab-pane.active");
-        const formId = activeTab.querySelector("form").id;
-        const prompts = generateMultiplePromptsWithWeights(formId);
-        copyToClipboard(prompts, "10 weighted prompts generated and copied!");
-    });
+        elements.generateMultipleButton.addEventListener("click", () => {
+            const activeForm = document.querySelector(".tab-pane.active form");
+            const prompts = generateMultiplePrompts(activeForm.id);
+            copyToClipboard(prompts, "10 weighted prompts generated and copied!");
+        });
 
-    toggleNightModeButton.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-    });
+        elements.toggleNightModeButton.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+    };
 
-    loadQuestions();
+    const init = async () => {
+        const questions = await fetchQuestions("questions.json");
+        if (!questions) return;
+
+        generateQuestions("room-form", questions.print);
+        generateQuestions("gym-form", questions.gyms);
+        generateQuestions("taxi-form", questions.taxis);
+        generateQuestions("business-form", questions.business);
+        generateQuestions("people-form", questions.people);
+        generateQuestions("real-estate-form", questions.realEstate);
+
+        initializeEventListeners();
+    };
+
+    init();
 });
