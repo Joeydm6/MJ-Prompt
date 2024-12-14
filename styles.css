@@ -44,12 +44,10 @@ body {
 }
 
 .dark-mode {
-    /* Donkere modus kleuren */
     --background-color: var(--background-color-dark);
     --text-color: var(--text-color-dark);
     --button-text-color: #ffffff;
 
-    /* Override knopkleuren voor Night Mode */
     --generate-prompt-bg: var(--generate-prompt-bg-dark);
     --random-choices-bg: var(--random-choices-bg-dark);
     --generate-10-prompts-bg: var(--generate-10-prompts-bg-dark);
