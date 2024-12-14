@@ -1,26 +1,20 @@
 const exclusionRules = {
-    // Rooms
     "Hallway": ["Couch", "Armchair", "Coffee table", "Rug", "Fireplace", "Floor lamp", "Side table", "Decorative pillows", "TV", "Dining table"],
     "Fireplace": ["Hallway"],
     "Dining room": ["Couch"],
     "Kitchen": ["TV"],
-    // Gyms
     "Yoga": ["Large group"],
     "Boxing bag": ["Group fitness"],
     "High-end gym": ["Industrial"],
-    // Taxis
     "Luxury sedan": ["Family with kids"],
     "Compact car": ["Tourists"],
     "Coastal areas": ["Electric vehicle"],
-    // Business
     "Large meeting": ["Focused"],
     "Typing": ["Energetic"],
     "Creative": ["Serious"],
-    // People
     "Reading a book": ["Angry"],
     "Socializing": ["Calm"],
     "Sporty": ["Teaching"],
-    // Real estate
     "Cityscape": ["Cottage"],
     "Luxury": ["Suburban"],
     "Loft": ["Countryside"]
@@ -57,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const generateQuestionsWithWeights = (formId, questions) => {
         const form = document.getElementById(formId);
-        form.innerHTML = ""; // Clear form
+        form.innerHTML = "";
 
         questions.forEach(({ question, type, name, options }) => {
             const container = document.createElement("div");
@@ -187,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
         promptText.textContent = prompt || "Your prompt will appear here after you make a selection.";
         examplePromptDiv.classList.remove("d-none");
         examplePromptDiv.style.display = "block";
-        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" }); // Scroll naar voorbeeldprompt
+        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
     const resetForm = () => {
