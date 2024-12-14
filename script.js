@@ -1,20 +1,26 @@
 const exclusionRules = {
+    // Rooms
     "Hallway": ["Couch", "Armchair", "Coffee table", "Rug", "Fireplace", "Floor lamp", "Side table", "Decorative pillows", "TV", "Dining table"],
     "Fireplace": ["Hallway"],
     "Dining room": ["Couch"],
     "Kitchen": ["TV"],
+    // Gyms
     "Yoga": ["Large group"],
     "Boxing bag": ["Group fitness"],
     "High-end gym": ["Industrial"],
+    // Taxis
     "Luxury sedan": ["Family with kids"],
     "Compact car": ["Tourists"],
     "Coastal areas": ["Electric vehicle"],
+    // Business
     "Large meeting": ["Focused"],
     "Typing": ["Energetic"],
     "Creative": ["Serious"],
+    // People
     "Reading a book": ["Angry"],
     "Socializing": ["Calm"],
     "Sporty": ["Teaching"],
+    // Real estate
     "Cityscape": ["Cottage"],
     "Luxury": ["Suburban"],
     "Loft": ["Countryside"]
@@ -51,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const generateQuestionsWithWeights = (formId, questions) => {
         const form = document.getElementById(formId);
-        form.innerHTML = "";
+        form.innerHTML = ""; // Clear form
 
         questions.forEach(({ question, type, name, options }) => {
             const container = document.createElement("div");
@@ -241,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const activeTab = document.querySelector(".tab-pane.active");
         const formId = activeTab.querySelector("form").id;
         const prompts = generateMultiplePromptsWithWeights(formId);
-        updatePromptInUI(prompts);
+        updatePromptInUI(prompts); // Show prompts in UI
         copyToClipboard(prompts, "10 weighted prompts generated and copied!");
     });
 
