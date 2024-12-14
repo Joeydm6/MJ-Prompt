@@ -94,6 +94,19 @@ body {
     background-color: var(--night-mode-bg);
 }
 
+/* Sticky buttons */
+.sticky-buttons {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--background-color);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionele schaduw */
+}
+
 /* Hover-effecten voor knoppen */
 .custom-btn:hover {
     opacity: 0.9;
@@ -107,8 +120,8 @@ body {
 
 .answers label {
     display: flex;
-    justify-content: center; /* Horizontaal centreren */
-    align-items: center;    /* Verticaal centreren */
+    justify-content: center;
+    align-items: center;
     padding: 10px 15px;
     border: 1px solid var(--text-color);
     border-radius: 8px;
@@ -116,9 +129,9 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     text-align: center;
-    width: 150px; /* Zorg voor consistente breedte */
-    height: 40px; /* Zorg voor consistente hoogte */
-    font-size: 14px; /* Pas aan indien nodig */
+    width: 150px;
+    height: 40px;
+    font-size: 14px;
 }
 
 .answers input {
@@ -143,10 +156,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, color 0.3s;
-    display: none; /* Verborgen bij default */
-    max-width: 570px; /* Maximale breedte */
-    margin: left; /* Centreer op de pagina */
-    text-align: center; /* Centreert tekst */
+    display: none;
+    max-width: 570px;
+    text-align: center;
 }
 
 .dark-mode #example-prompt {
@@ -158,82 +170,74 @@ body {
     font-size: 14px;
     padding: 10px 15px;
     border-radius: 8px;
-    background-color: var(--selected-bg); /* Gebruik dezelfde kleur als geselecteerde antwoorden */
-    color: var(--selected-text); /* Gebruik witte tekst voor leesbaarheid */
+    background-color: var(--selected-bg);
+    color: var(--selected-text);
     transition: opacity 0.3s ease;
-    max-width: 570px; /* Maximale breedte */
-    margin: left; /* Centreer op de pagina */
-    text-align: center; /* Centreert tekst */
+    max-width: 570px;
+    text-align: center;
 }
 
 #example-prompt.visible {
-    display: block; /* Shown when the class 'visible' is added */
+    display: block;
 }
 
-/* Stijl voor tabs */
+/* Tabs stijl */
 .nav-tabs {
-    border-bottom: none; /* Verwijder de lange lijn onder tabs */
+    border-bottom: none;
 }
 
 .nav-tabs .nav-link {
-    padding: 12px 20px; /* Tabs iets ruimer maken */
-    margin-right: -1px; /* Tabs tegen elkaar aan laten staan */
-    background-color: #ffffff; /* Achtergrondkleur van tabs */
-    color: var(--text-color); /* Tekstkleur van tabs */
+    padding: 12px 20px;
+    margin-right: -1px;
+    background-color: #ffffff;
+    color: var(--text-color);
     border: 1px solid #ddd;
     border-radius: 4px 4px 0 0;
-    font-size: 16px; /* Verhoog lettergrootte */
+    font-size: 16px;
     text-align: center;
     transition: all 0.3s;
 }
 
 .nav-tabs .nav-link:last-child {
-    margin-right: 0; /* Geen extra ruimte bij de laatste tab */
+    margin-right: 0;
 }
 
 .nav-tabs .nav-link.active {
-    background-color: #0F3460; /* Actieve tab achtergrondkleur */
-    color: #ffffff; /* Actieve tab tekstkleur */
+    background-color: #0F3460;
+    color: #ffffff;
     border-color: #0F3460;
 }
 
 .nav-tabs .nav-link:hover {
-    background-color: #5D6D7E; /* Hoverkleur tabs */
+    background-color: #5D6D7E;
     color: #ffffff;
 }
 
 .dark-mode .nav-tabs .nav-link {
-    background-color: #121212; /* Tabs achtergrondkleur in donkere modus */
+    background-color: #121212;
     color: var(--text-color-dark);
     border-color: #333;
 }
 
 .dark-mode .nav-tabs .nav-link.active {
-    background-color: #0F3460; /* Actieve tabkleur in donkere modus */
+    background-color: #0F3460;
     color: #ffffff;
 }
 
 label.disabled {
-    opacity: 0.5; /* Maak het label minder opvallend */
-    cursor: not-allowed; /* Toon dat de optie niet beschikbaar is */
-    text-decoration: line-through; /* Doorstrepen om uitgeschakeld te benadrukken */
-    background-color: #f8d7da; /* Lichtroze achtergrondkleur */
-    border: 1px solid #f5c6cb; /* Lichtrode rand */
-    color: #721c24; /* Donkerrode tekstkleur */
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
 }
 
 input:disabled + label {
     opacity: 0.5;
     cursor: not-allowed;
     text-decoration: line-through;
-    background-color: #f8d7da; /* Zelfde stijl als de label.disabled */
+    background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     color: #721c24;
-}
-
-.answers label.selected {
-    background-color: #78B5AA; /* Geselecteerde kleur */
-    color: #ffffff; /* Witte tekst voor contrast */
-    font-weight: bold;
-    border: 2px solid #78B5AA; /* Extra benadrukking */
 }
