@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectRandomChoicesWithWeights(formId);
             prompts.push(generatePrompt(formId));
         }
-        return prompts.join("\n\n");
+        return prompts;
     };
 
     const copyToClipboard = (text, message) => {
@@ -247,8 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const activeTab = document.querySelector(".tab-pane.active");
         const formId = activeTab.querySelector("form").id;
         const prompts = generateMultiplePromptsWithWeights(formId);
-        copyToClipboard(prompts, "10 weighted prompts generated and copied!");
-        // Do not update the UI with 10 prompts
+        copyToClipboard(prompts.join("\n\n"), "10 weighted prompts generated and copied!");
+        // Do not update the UI
     });
 
     toggleNightModeButton.addEventListener("click", () => {
