@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const generateQuestionsWithWeights = (formId, questions) => {
         const form = document.getElementById(formId);
-        form.innerHTML = ""; // Clear form
+        form.innerHTML = "";
 
         questions.forEach(({ question, type, name, options }) => {
             const container = document.createElement("div");
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         promptText.textContent = prompt || "Your prompt will appear here after you make a selection.";
         examplePromptDiv.classList.remove("d-none");
         examplePromptDiv.style.display = "block";
-        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" }); // Scroll naar voorbeeldprompt
+        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
     const resetForm = () => {
