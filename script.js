@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         promptText.textContent = prompt || "Your prompt will appear here after you make a selection.";
         examplePromptDiv.classList.remove("d-none");
         examplePromptDiv.style.display = "block";
-        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" }); // Scroll naar voorbeeldprompt
     };
 
     const resetForm = () => {
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectRandomChoicesWithWeights(formId);
             prompts.push(generatePrompt(formId));
         }
-        return prompts;
+        return prompts.join("\n\n");
     };
 
     const copyToClipboard = (text, message) => {
@@ -242,18 +242,3 @@ document.addEventListener("DOMContentLoaded", () => {
         updatePromptInUI(prompt);
         copyToClipboard(prompt, "Random choices selected and copied!");
     });
-
-    document.getElementById("generate-multiple").addEventListener("click", () => {
-        const activeTab = document.querySelector(".tab-pane.active");
-        const formId = activeTab.querySelector("form").id;
-        const prompts = generateMultiplePromptsWithWeights(formId);
-        copyToClipboard(prompts.join("\n\n"), "10 weighted prompts generated and copied!");
-        // Do not update the UI
-    });
-
-    toggleNightModeButton.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-    });
-
-    loadQuestions();
-});
