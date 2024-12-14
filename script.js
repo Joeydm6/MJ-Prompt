@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch("questions.json");
             const questions = await response.json();
-    
-            // Categorieën definiëren en controleren
+
             const categories = [
                 { formId: "room-form", data: questions.print },
                 { formId: "gym-form", data: questions.gyms },
@@ -46,24 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 { formId: "people-form", data: questions.people },
                 { formId: "real-estate-form", data: questions.realEstate }
             ];
-    
-            // Genereer vragen alleen als data beschikbaar is
+
             categories.forEach(({ formId, data }) => {
-                if (data) {
-                    generateQuestionsWithWeights(formId, data);
-                } else {
-                    console.warn(`Data for ${formId} is missing in the JSON.`);
-                }
+                if (data) generateQuestionsWithWeights(formId, data);
+                else console.warn(`Data for ${formId} is missing in the JSON.`);
             });
         } catch (error) {
             console.error("Error loading questions:", error);
         }
     };
-    
 
     const generateQuestionsWithWeights = (formId, questions) => {
         const form = document.getElementById(formId);
-        form.innerHTML = ""; // Clear form content
+        form.innerHTML = ""; // Clear form
 
         questions.forEach(({ question, type, name, options }) => {
             const container = document.createElement("div");
@@ -114,14 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById(formId);
         const inputs = form.querySelectorAll("input");
 
-        // Reset all inputs to default state
         inputs.forEach(input => {
             input.disabled = false;
             const label = input.closest("label");
             if (label) label.classList.remove("disabled");
         });
 
-        // Apply exclusion rules based on selected inputs
         inputs.forEach(input => {
             if (input.checked) {
                 const exclusions = exclusionRules[input.value] || [];
@@ -149,9 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const random = Math.random() * sum;
 
         for (let i = 0; i < cumulativeWeights.length; i++) {
-            if (random < cumulativeWeights[i]) {
-                return options[i];
-            }
+            if (random < cumulativeWeights[i]) return options[i];
         }
         return options[options.length - 1];
     };
@@ -163,14 +153,14 @@ document.addEventListener("DOMContentLoaded", () => {
         questions.forEach(question => {
             const inputs = question.querySelectorAll("input");
             const options = Array.from(inputs).map(input => ({
-                input: input,
+                input,
                 weight: parseFloat(input.dataset.weight) || 0
             }));
 
             const selectedOption = weightedRandomChoice(options);
 
             inputs.forEach(input => {
-                input.checked = (input === selectedOption.input);
+                input.checked = input === selectedOption.input;
                 input.dispatchEvent(new Event("change"));
             });
         });
@@ -197,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         promptText.textContent = prompt || "Your prompt will appear here after you make a selection.";
         examplePromptDiv.classList.remove("d-none");
         examplePromptDiv.style.display = "block";
+        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" }); // Scroll naar voorbeeldprompt
     };
 
     const resetForm = () => {
@@ -212,7 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         applyExclusionRules(form.id);
-
         examplePromptDiv.classList.add("d-none");
         examplePromptDiv.style.display = "none";
     };
@@ -234,7 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // Event Listeners
     document.getElementById("reset-form").addEventListener("click", resetForm);
 
     document.getElementById("generate-prompt").addEventListener("click", () => {
