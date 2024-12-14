@@ -6,6 +6,30 @@
     <title>MidJourney Prompt Generator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Mobiele weergave: Sticky Buttons */
+        @media (max-width: 768px) {
+            .sticky-buttons {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: var(--background-color, #121212);
+                padding: 10px;
+                display: flex;
+                justify-content: space-around; /* Verdeel knoppen gelijkmatig */
+                gap: 10px;
+                z-index: 1000;
+                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .sticky-buttons button {
+                flex: 1; /* Verdeel knoppen gelijkmatig */
+                max-width: 150px; /* Beperk breedte van knoppen */
+                font-size: 14px; /* Maak tekst compacter */
+            }
+        }
+    </style>
 </head>
 <body class="dark-mode">
     <div class="container py-5">
