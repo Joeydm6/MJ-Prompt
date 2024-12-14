@@ -23,9 +23,9 @@
             }
 
             .sticky-buttons button {
-                flex: 1; /* Verdeel de knoppen gelijkmatig */
-                max-width: 150px;
-                font-size: 14px;
+                flex: 1; /* Verdeel knoppen gelijkmatig */
+                max-width: 150px; /* Beperk breedte van knoppen */
+                font-size: 14px; /* Maak tekst compacter */
             }
         }
     </style>
@@ -36,7 +36,7 @@
             <h1 class="text-center">Design Your Space</h1>
             <div class="d-flex gap-2">
                 <button id="toggle-night-mode" class="custom-btn primary-btn">Night Mode</button>
-                <button type="button" id="reset-form" class="custom-btn btn-gray">Reset Form</button>
+                <button type="button" id="reset-form" class="custom-btn btn-gray">Reset</button>
             </div>
         </div>
 
@@ -60,9 +60,9 @@
 
         <!-- Sticky Buttons -->
         <div class="sticky-buttons">
-            <button type="button" class="custom-btn" id="generate-prompt">Generate Prompt</button>
-            <button type="button" class="custom-btn" id="random-choices">Random Choices</button>
-            <button type="button" class="custom-btn" id="generate-multiple">Generate 10 Prompts</button>
+            <button type="button" class="custom-btn" id="generate-prompt">Generate</button>
+            <button type="button" class="custom-btn" id="random-choices">Random</button>
+            <button type="button" class="custom-btn" id="generate-multiple">10 Random</button>
         </div>
 
         <!-- Example prompt display -->
