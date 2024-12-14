@@ -44,12 +44,10 @@ body {
 }
 
 .dark-mode {
-    /* Donkere modus kleuren */
     --background-color: var(--background-color-dark);
     --text-color: var(--text-color-dark);
     --button-text-color: #ffffff;
 
-    /* Override knopkleuren voor Night Mode */
     --generate-prompt-bg: var(--generate-prompt-bg-dark);
     --random-choices-bg: var(--random-choices-bg-dark);
     --generate-10-prompts-bg: var(--generate-10-prompts-bg-dark);
@@ -70,10 +68,14 @@ body {
     font-size: 16px;
     cursor: pointer;
     color: var(--button-text-color);
-    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--generate-prompt-bg);
+    transition: background-color 0.3s, color 0.3s, opacity 0.2s;
 }
 
-/* Specifieke knoppen kleuren */
+.custom-btn:hover {
+    opacity: 0.9;
+}
+
 #generate-prompt {
     background-color: var(--generate-prompt-bg);
 }
@@ -129,11 +131,6 @@ body {
     }
 }
 
-/* Hover-effecten voor knoppen */
-.custom-btn:hover {
-    opacity: 0.9;
-}
-
 .answers {
     display: flex;
     flex-wrap: wrap;
@@ -160,7 +157,6 @@ body {
     display: none;
 }
 
-/* Geselecteerde antwoorden stijl */
 .answers label.selected {
     background-color: var(--selected-bg);
     color: var(--selected-text);
@@ -211,7 +207,7 @@ body {
 .nav-tabs .nav-link {
     padding: 12px 20px;
     margin-right: -1px;
-    background-color: #ffffff;
+    background-color: var(--background-color);
     color: var(--text-color);
     border: 1px solid #ddd;
     border-radius: 4px 4px 0 0;
