@@ -1,26 +1,4 @@
 :root {
-@media (max-width: 768px) {
-    .sticky-buttons {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: var(--background-color);
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        z-index: 1000;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sticky-buttons button {
-        width: 100%; /* Knoppen vullen de breedte van het scherm */
-        max-width: 300px; /* Optioneel: Beperk de maximale breedte */
-        font-size: 14px; /* Zorg voor leesbaarheid op kleine schermen */
-    }
-}
-    
     /* Algemene kleuren voor Light Mode */
     --background-color: #ffffff;
     --text-color: #333;
@@ -127,11 +105,6 @@ body {
     gap: 10px;
     z-index: 1000;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionele schaduw */
-}
-
-/* Hover-effecten voor knoppen */
-.custom-btn:hover {
-    opacity: 0.9;
 }
 
 .answers {
@@ -262,4 +235,27 @@ input:disabled + label {
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     color: #721c24;
+}
+
+/* Mobiele apparaten */
+@media (max-width: 768px) {
+    .sticky-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--background-color);
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        z-index: 1000;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionele schaduw */
+    }
+
+    .sticky-buttons button {
+        width: 100%; /* Knoppen vullen de breedte van het scherm */
+        max-width: 300px; /* Optioneel: Beperk de maximale breedte */
+        font-size: 14px; /* Zorg voor leesbaarheid op kleine schermen */
+    }
 }
