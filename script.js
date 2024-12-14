@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formId = activeTab.querySelector("form").id;
         const prompts = generateMultiplePromptsWithWeights(formId);
         copyToClipboard(prompts, "10 weighted prompts generated and copied!");
-        examplePromptDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Do not update the UI with 10 prompts
     });
 
     toggleNightModeButton.addEventListener("click", () => {
