@@ -1,38 +1,39 @@
 :root {
-    /* Algemene kleuren */
+    /* Algemene kleuren voor Light Mode */
     --background-color: #ffffff;
     --text-color: #333;
     --button-text-color: #ffffff;
-    --selected-bg: #78B5AA;
+    --selected-bg: #78B5AA; /* Aangepaste kleur voor geselecteerde antwoorden */
     --selected-text: #fff;
 
-    /* Specifieke knoppen kleuren */
+    /* Specifieke kleuren voor knoppen in Light Mode */
     --generate-prompt-bg: #78B5AA;
     --random-choices-bg: #0F3460;
     --generate-10-prompts-bg: #5D6D7E;
     --reset-form-bg: #0F3460;
     --night-mode-bg: #78B5AA;
 
-    /* Achtergrond promptvlak */
+    /* Achtergrondkleur voor promptvlak in Light Mode */
     --example-prompt-bg: #F0F8FF;
 
     /* Donkere modus kleuren */
     --background-color-dark: #121212;
     --text-color-dark: #ffffff;
-    --button-hover-bg-dark: #3700B3;
 
-    /* Donkere modus knoppen kleuren */
+    /* Specifieke kleuren voor knoppen in Night Mode */
     --generate-prompt-bg-dark: #78B5AA;
     --random-choices-bg-dark: #0F3460;
     --generate-10-prompts-bg-dark: #5D6D7E;
     --reset-form-bg-dark: #0F3460;
     --night-mode-bg-dark: #78B5AA;
 
-    /* Achtergrond promptvlak in donkere modus */
+    /* Achtergrondkleur voor promptvlak in Night Mode */
     --example-prompt-bg-dark: #F0F8FF;
 
-    /* Hover-effect */
     --button-hover-bg: #e0e0e0;
+    --button-hover-bg-dark: #3700B3;
+    --selected-bg-dark: #78B5AA; /* Aangepaste kleur voor geselecteerde antwoorden in Night Mode */
+    --selected-text-dark: #fff;
 }
 
 body {
@@ -43,16 +44,23 @@ body {
 }
 
 .dark-mode {
+    /* Donkere modus kleuren */
     --background-color: var(--background-color-dark);
     --text-color: var(--text-color-dark);
     --button-text-color: #ffffff;
+
+    /* Override knopkleuren voor Night Mode */
     --generate-prompt-bg: var(--generate-prompt-bg-dark);
     --random-choices-bg: var(--random-choices-bg-dark);
     --generate-10-prompts-bg: var(--generate-10-prompts-bg-dark);
     --reset-form-bg: var(--reset-form-bg-dark);
     --night-mode-bg: var(--night-mode-bg-dark);
+
     --example-prompt-bg: var(--example-prompt-bg-dark);
+
     --button-hover-bg: var(--button-hover-bg-dark);
+    --selected-bg: var(--selected-bg-dark);
+    --selected-text: var(--selected-text-dark);
 }
 
 .custom-btn {
@@ -62,4 +70,174 @@ body {
     font-size: 16px;
     cursor: pointer;
     color: var(--button-text-color);
-    transition: back
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Specifieke knoppen kleuren */
+#generate-prompt {
+    background-color: var(--generate-prompt-bg);
+}
+
+#random-choices {
+    background-color: var(--random-choices-bg);
+}
+
+#generate-multiple {
+    background-color: var(--generate-10-prompts-bg);
+}
+
+#reset-form {
+    background-color: var(--reset-form-bg);
+}
+
+#toggle-night-mode {
+    background-color: var(--night-mode-bg);
+}
+
+/* Sticky buttons */
+.sticky-buttons {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--background-color);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionele schaduw */
+}
+
+/* Hover-effecten voor knoppen */
+.custom-btn:hover {
+    opacity: 0.9;
+}
+
+.answers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.answers label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid var(--text-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    font-size: 14px;
+}
+
+.answers input {
+    display: none;
+}
+
+/* Geselecteerde antwoorden stijl */
+.answers label.selected {
+    background-color: var(--selected-bg);
+    color: var(--selected-text);
+    font-weight: bold;
+    border: 2px solid var(--selected-bg);
+}
+
+#example-prompt {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: var(--example-prompt-bg);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+    display: none;
+    max-width: 570px;
+    text-align: center;
+}
+
+.dark-mode #example-prompt {
+    background-color: var(--example-prompt-bg-dark);
+    color: var(--text-color-dark);
+}
+
+#confirmation-message {
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: var(--selected-bg);
+    color: var(--selected-text);
+    transition: opacity 0.3s ease;
+    max-width: 570px;
+    text-align: center;
+}
+
+#example-prompt.visible {
+    display: block;
+}
+
+/* Tabs stijl */
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link {
+    padding: 12px 20px;
+    margin-right: -1px;
+    background-color: #ffffff;
+    color: var(--text-color);
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.nav-tabs .nav-link:last-child {
+    margin-right: 0;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #0F3460;
+    color: #ffffff;
+    border-color: #0F3460;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #5D6D7E;
+    color: #ffffff;
+}
+
+.dark-mode .nav-tabs .nav-link {
+    background-color: #121212;
+    color: var(--text-color-dark);
+    border-color: #333;
+}
+
+.dark-mode .nav-tabs .nav-link.active {
+    background-color: #0F3460;
+    color: #ffffff;
+}
+
+label.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+input:disabled + label {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
